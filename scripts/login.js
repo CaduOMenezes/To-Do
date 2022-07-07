@@ -57,7 +57,7 @@ function entrar() {
 
     localStorage.setItem("token", jwtRecebido)
 
-    window.location.href = "tarefas.html"
+    window.location.href = "../html/tarefas.html"
   }
  
 
