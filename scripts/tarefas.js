@@ -1,6 +1,6 @@
 // selecionamos a tag onde contem o Nome Usuario para exibirmos ao usuario quando acessar.
 
-const nomeUsuario = document.getElementById('nomeUsuario');
+const jwt = localStorage.getItem("token"); //Lê o token que foi gerado na criação e no login do usuário
 const listaPendente = document.querySelector('#tarefasPendentes');
 const listaTerminadas = document.querySelector('#tarefasTerminadas');
 const inputTarefa = document.querySelector('#novaTarefa');
@@ -20,76 +20,59 @@ window.onload = function () {
 
   })
 
-  
-  
+
+
 };
-function encerrarSessao(){
-  window.location.href="./login.js";
-  localStorage.clear()
-}
+
+//--------------Função que recebe o usuário no canto superior direito da tela------------------------------------
 function receberUsuario() {
-  
-  const apiURL = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe';
-  
-  const jwt = localStorage.getItem("token");
-  
-  
+
+  const apiURL = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe';//API que recebe os dados do usuário
+
+
   const configuracaoRequisicao = {
-    
+
+
     method: "GET",
     headers: {
       "Content-type": "application/json",
       "Authorization": jwt
-      
+
     }
   }
-  
-  
+
   fetch(apiURL, configuracaoRequisicao)
-  
-  .then((response) => response.json())
-  
-  
-  .then(function (data) {
-    
-    const dados = `${data.firstName} ${data.lastName}`
-    
-    nomeUsuario.innerHTML = dados;
-    
-    
-    
-  })
-  
-  .catch((err) => {
-    console.log(err)
-    
-  })
+
+    .then((response) => response.json())
+
+
+    .then(function (data) {
+
+      const nomeUsuario = document.getElementById('nomeUsuario');
+      const dados = `${data.firstName} ${data.lastName}`
+
+      nomeUsuario.innerHTML = dados;
+
+
+
+    })
+
+    .catch((err) => {
+      console.log(err)
+
+    })
 }
+//----------------------------------------------------------------------------------------------------------
 
-//PASSO 2
-
-
-// UTILIZAR ENDPOINT /TASKS E LISTAR NO CONSOLE.
-// TAMBEM ACRESCENTAR A FUNCAO QUE LISTA AS TAREFAS EM NOSSO WINDOW.ONLOAD
-//no segundo then do fetch:
-//Utilizem template string, para através do JS inserir novamente no HTML o corpo das tarefas
-
-// `<li class="tarefa">
-//         <div class="not-done"></div>
-//         <div class="descricao">
-//           <p class="nome">${data.description}</p>
-//           <p class="timestamp"> "Criada em:" ${data.createdAt}</p>
-//         </div>
-//       </li>`
-
+//---------------------------------------------------------------------------------------------------------
 function renderizarTarefas(tasks) {
-  
+
   listaPendente.innerHTML = "";
   listaTerminadas.innerHTML = "";
-  
+
   setTimeout(() => {
-    
-    
+
+
     for (let task of tasks) {
       const dataFormatada = new Date(task.createdAt).toLocaleDateString(
         "pt-BR",
@@ -98,10 +81,10 @@ function renderizarTarefas(tasks) {
           month: "2-digit",
           year: "numeric",
         }
-        )
-        
-        if (task.completed) {
-          listaTerminadas.innerHTML +=
+      )
+
+      if (task.completed) {
+        listaTerminadas.innerHTML +=
           `<li class="tarefa">
           <div class="not-done"
           onclick="RemoverTarefa(${task.id})></div>
@@ -110,8 +93,8 @@ function renderizarTarefas(tasks) {
           <p class="timestamp"> "Criada em:" ${dataFormatada}</p>
           </div>
           </li>`
-        } else {
-          listaPendente.innerHTML +=
+      } else {
+        listaPendente.innerHTML +=
           `<li class="tarefa">
           <div class="not-done" onclick="atualizarTarefa(${task.id},true)"></div>
           <div class="descricao">
@@ -119,66 +102,46 @@ function renderizarTarefas(tasks) {
           <p class="timestamp"> Criada em: ${dataFormatada}</p>
           </div>
           </li>`
-        }
       }
-      
-      
-    }, 2000)
-    
-  }
-  
-  function listarTarefas() {
-    
-    const urlListar = "https://ctd-todo-api.herokuapp.com/v1/tasks"
-    
-    const configuracaoListar = {
-      method: "GET",
-      headers: {
-        
-        "Content-type": "application/json",
-        "Authorization": localStorage.getItem("token")
-        
-      }
+
     }
-    
-    fetch(urlListar, configuracaoListar)
+
+
+  }, 2000)
+
+}
+//-----------------------------------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------------------
+function listarTarefas() {
+
+  const urlListar = "https://ctd-todo-api.herokuapp.com/v1/tasks"//API que puxa através do JWT as tarefas criadas pelo user
+
+  const configuracaoListar = {
+    method: "GET",
+    headers: {
+
+      "Content-type": "application/json",
+      "Authorization": jwt
+
+    }
+  }
+
+  fetch(urlListar, configuracaoListar)
     .then((response) => response.json())
     .then((tasks) => {
       console.log(tasks);
-      
+
       renderizarTarefas(tasks)
-      
+
     })
-    
-    
-    
-  }
-  
-  //PASSO 3:
-//utilizar endpoint  /tasks para criar uma tarefa
-// utilizar o botão + para efetuar o fetch desse endpoint
-//Utilizando o evento de clicar.
-//inserir usando innerHTML e template string, a nova tarefa criada ao
-//clicar no botão.
-//criar uma variavel onde utilize o metodo new Date
-//const dataFormata = newDate(data.createdAt).toLocaleDateString(
-  // 'pt-BR',
-  // {
-//     day: '2-digit',
-//     month: '2-digit',
-//     year: 'numeric'
-// }
-//)
-// `<li class="tarefa">
-//         <div class="not-done"></div>
-//         <div class="descricao">
-//           <p class="nome">${data.description}</p>
-//           <p class="timestamp"> "Criada em:" ${dataFormatada}</p>
-//         </div>
-//       </li>`
+
+
+
+}
 
 function criarTarefa() {
-  
+
   const urlCriar = 'https://ctd-todo-api.herokuapp.com/v1/tasks'
 
 
@@ -187,83 +150,110 @@ function criarTarefa() {
     body: "",
     headers: {
       "Content-type": "application/json",
-      "Authorization": localStorage.getItem("token")
+      "Authorization": jwt
     },
-
-
-
   }
+
   configuracaoCriar.body = JSON.stringify({
     description: inputTarefa.value,
     completed: false,
   })
+
   inputTarefa.value = "";
-  
+
   fetch(urlCriar, configuracaoCriar)
     .then((response) => response.json()
-    .then((data) => {
-      
-      console.log(data.description, data.completed);
-      
-      const dataFormat = new Date(data.createdAt).toLocaleDateString(
-        
-        'pt-BR',
-        {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        })
-        
+      .then((data) => {
+
+        //console.log("Descrição:", data.description, "Status:",data.completed,"ID",data.id);
+
+        const dataFormat = new Date(data.createdAt).toLocaleDateString(
+
+          'pt-BR',
+          {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          })
+
         listaPendente.innerHTML +=
-        `<li class="tarefa">
-        <div class="not-done" onclick="atualizarTarefa(${data.id},true)"></div>
+          `<li class="tarefa">
+        <div class="not-done" id="notDone${data.id}" onclick="atualizarTarefa(${data.id}, true)"></div>
         <div class="descricao">
         <p class="nome">${data.description}</p>
         <p class="timestamp"> Criada em: ${dataFormat}</p>
         </div>
         </li>`
-        
+
       })
-      
-      )
-      
-      
-    }
-    
-    
-    
-    btnLogOff.addEventListener("click", encerrarSessao())
-    
-    //aula 22
-// PASSO 2 : FUNCAO DE REMOVER STATUS:
-//devemos utilizar uma funcao, com dois parametros id e completed, pois é através do id que iremos atualizar o dado da mesma, e o completed para que ela
-//seja listada no campo correspondente a listaPendente ou listaTerminadas.
 
-// inserir na funcao de listar Tarefa a chamada da funcao de atualizarTarefa passando dinamicamente com template string o id correspondente a task.
+    )
+}
 
-//passar o body vazio, para que possa utilizar JSON.stringfy no completed obtido da task.
+function atualizarTarefa(id, completed) {
 
-// body:""
+  const urlAtualizar = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`
+  const configAtualizar = {
+    method: "PUT",
+    body: "",
+    headers: {
+      "Content-type": "application/json",
+      "Authorization": jwt
+    },
 
+  }
 
-// funcaoRenderizar.body = JSON.stringify({completed})
+  configAtualizar.body = JSON.stringify({ completed })
 
-// efetuar o fetch, passando a url /tasks, junto do id obtido utilizando template string
+  fetch(urlAtualizar, configAtualizar)
+    .then((res) => res.json()
+      .then(() => {
 
-//'https://ctd-todo-api.herokuapp.com/v1/tasks/${id}'
+        listarTarefas()
 
-// e entao no segundo then listamos a tarefas novamente, para que o usuario veja a mesma sendo renderizada no seu lovo local.
+      }))
 
-// function atualizarTarefa(id,completed) {
-
-// }
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 
+function removerTarefa(id) {
+  const urlDelete = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`
+  const configuracaoRequisicao = {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      "Authorization": jwt,
+    },
+
+  };
+
+  fetch(urlDelete, configuracaoRequisicao)
+    .then((response) => response.json()
+
+      .then(() => {
+        listarTarefas()
+      }))
+
+    .catch((err) => {
+      console.log(err);
+    });
+
+
+}
 //PASSO 2 : FUNCAO DE REMOVER STATUS:
 
 
 // seguindo a mesma ideia da funcao de atualizarTarefa, deve criar uma funcao de apagar tarefa tendo como parametro o id.
 //  efetuar o usando o metodo, e no headder o token de autenticacao.
-//   listar novamente as tarefas para que a mesma desapareça da exibição na listaTerminadas.
-// localStorage.clear()
-// e redirecione o usuario de volta para a tela de login.html. utilizando window.location.href
+
+
+btnLogOff.addEventListener("click", () => {
+
+  localStorage.clear()
+  window.location.href = "./login.html";
+
+});
+
