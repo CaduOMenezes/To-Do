@@ -1,4 +1,4 @@
-@import url('./common.css');
+@import url('./style.css');
 
 body{
   display: flex;
@@ -30,7 +30,7 @@ form:after {
   height: 100%;
   top: 0;
   left: 0;
-  background: linear-gradient(var(--primary), var(--secondary));
+  background: linear-gradient(var(--cor2-paleta2), var(--cor3-paleta2));
 }
 
 
@@ -44,7 +44,7 @@ input {
 
 input:focus {
   outline: none;
-  border: 1px solid lightgrey;
+  border: 1px solid #3f4e4f78;;
 }
 
 label {
@@ -57,13 +57,19 @@ label {
 
 button {
   padding: .5em 3em;
-  background-color: var(--primary);
-  color: white;
+  background-image: linear-gradient(to right, var(--cor3-paleta2), var(--cor2-paleta2));
+    color: #F9F9F9;
   margin-top: 2em;
   font-weight: 400;
   font-size: 1em;
 }
+button:hover {
+  opacity: 1.2;
+}
 
+button:active{
+  opacity: 0.8;
+}
 .form-header {
   color: grey;
   font-size: 2em;
@@ -73,7 +79,7 @@ button {
 }
 .left{
   width: 50%;  
-  background-color: white;
+  background-color: #a27b5cad;
   text-align: center;
   display: flex;
   align-items: center;

@@ -1,8 +1,8 @@
-@import url('./common.css');
+@import url('./style.css');
 header {
   display: flex;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  box-shadow: 0px 3px 5px lightgrey;
+  background: linear-gradient(90deg, var(--cor2-paleta2), var(--cor3-paleta2));
+  box-shadow: 0px 3px 5px rgb(169, 168, 168);
   padding: 0 3em;
   margin-bottom: 2em;
 }
@@ -38,14 +38,19 @@ a {
 
 #closeApp{
   margin-left: 15px;
-  font-size: .7em;
-  background-color: rgb(218, 88, 88);
+  font-size: .9em;
+  background-image:linear-gradient(to right,rgb(220, 20, 40),rgb(255, 30, 0));
   color: white;
   border-radius: 50vh;
+  font-weight: 700;
   padding: 5px 10px;
   cursor: pointer;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
+#closeApp:hover{
+  opacity: 0.7;
+}
 /* Nova tarefa ----------------------------------------------------------- */
 
 .nova-tarefa {
@@ -144,13 +149,13 @@ a {
   width: 1.5em;
   background-color: white;
   box-shadow: 2px 2px 5px lightgrey;
-  border: 2px solid var(--secondary);
+  border: 2px solid var(--cor2-paleta2);
   z-index: 2;
   transition: background-color 200ms linear;
 }
 
 .tarefa .not-done:hover {
-  background-color: var(--secondary);
+  background-color: var(--cor2-paleta2);
 }
 
 .tarefa:first-child .not-done::before {
@@ -161,7 +166,7 @@ a {
   display: block;
   height: 3em;
   width: 2px;
-  background-color: var(--secondary);
+  background-color: var(--cor2-paleta2);
 }
 
 .tarefa:not(:last-child) .not-done::after {
@@ -172,7 +177,7 @@ a {
   display: block;
   height: 4.5em;
   width: 2px;
-  background-color: var(--secondary);
+  background-color: var(--cor2-paleta2);
 }
 
 .tarefa .descricao {
@@ -183,6 +188,7 @@ a {
   background-color: white;
   padding: 1em 2em;
   box-shadow: 2px 2px 5px lightgrey;
+  
 }
 
 .tarefa .nome {
@@ -190,8 +196,9 @@ a {
 }
 
 .tarefa .timestamp {
-  font-size: .9em;
+  font-size: .7em;
   color: rgb(134, 134, 134);
+  
 }
 
 /* Tarefas terminadas ----------------------------------------------------------- */
@@ -201,11 +208,11 @@ a {
   width: 8em;
   text-align: center;
   padding: .5em 1em;
-  background-color: white;
+  background-color: var(--cor3-paleta2);
   border-radius: .2em;
   box-shadow: 3px 3px 5px lightgrey;
-  color: rgb(170, 170, 170);
-  font-weight: 400;
+  color: var(--cor4-paleta2);
+  font-weight: 500;
   font-size: 1.1em;
   margin-left: calc(15% - 4em);
   z-index: 20;
@@ -219,13 +226,13 @@ a {
   margin: 2em 15%;
 }
 
-.tarefas-terminadas i{
+/* .tarefas-terminadas i{
   color: grey;
   background-color: rgb(228, 228, 228);
 }
 .tarefas-terminadas button{
   margin-left: 10px;
-}
+} */
 
 .tarefas-terminadas .tarefa .descricao {
   background-color: rgb(228, 228, 228);
@@ -234,6 +241,28 @@ a {
 .tarefas-terminadas .tarefa .descricao .nome {
   color: grey;
   text-decoration: line-through;
+}
+.tarefa{
+  width: 100%;
+}
+#completed{
+  background-color: var(--cor2-paleta2);
+}
+
+.iconsTask{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 55px;
+}
+.lixeira {
+  width: 35px;
+  cursor: pointer;
+}
+.edit{
+  width: 20px;
+  cursor: pointer;
 }
 
 #skeleton .descricao{

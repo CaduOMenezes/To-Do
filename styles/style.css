@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Mingzat&family=Roboto&display=swap');
+
+:root {
+  --primary: #7898FF;
+  --secondary: #8E64C5;
+  --app-grey: #F2F2F2;
+  --cor1-paleta1: #D4ECDD;
+  --cor2-paleta1: #345B63;
+  --cor3-paleta1: #152D35;
+  --cor4-paleta1: #112031;
+  --cor1-paleta2:#2C3639;
+  --cor2-paleta2:#3F4E4F;
+  --cor3-paleta2:#A27B5C;
+  --cor4-paleta2:#DCD7C9;
+  --cor1-paleta3:#290001;
+  --cor2-paleta3:#87431D;
+  --cor3-paleta3:#C87941;
+  --cor4-paleta3:#DBCBBD;
+  --cor1-paleta4:#EEEDDE;
+  --cor2-paleta4:#E0DDAA;
+  --cor3-paleta4:#203239;
+  --cor4-paleta4:#141E27;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--cor4-paleta2);
+  min-height: 100vh;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}

@@ -86,11 +86,14 @@ function renderizarTarefas(tasks) {
       if (task.completed) {
         listaTerminadas.innerHTML +=
           `<li class="tarefa">
-          <div class="not-done"
-          onclick="RemoverTarefa(${task.id})></div>
+          <div class="not-done" id="completed" onclick="atualizarTarefa(${task.id},false)"></div>
           <div class="descricao">
           <p class="nome">${task.description}</p>
           <p class="timestamp"> "Criada em:" ${dataFormatada}</p>
+          <div class="iconsTask">
+          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          </div>
           </div>
           </li>`
       } else {
@@ -100,6 +103,10 @@ function renderizarTarefas(tasks) {
           <div class="descricao">
           <p class="nome">${task.description}</p>
           <p class="timestamp"> Criada em: ${dataFormatada}</p>
+          <div class="iconsTask">
+          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          </div>
           </div>
           </li>`
       }
@@ -182,6 +189,10 @@ function criarTarefa() {
         <div class="descricao">
         <p class="nome">${data.description}</p>
         <p class="timestamp"> Criada em: ${dataFormat}</p>
+        <div class="iconsTask">
+          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          </div>
         </div>
         </li>`
 
@@ -234,6 +245,7 @@ function removerTarefa(id) {
     .then((response) => response.json()
 
       .then(() => {
+
         listarTarefas()
       }))
 
@@ -243,12 +255,6 @@ function removerTarefa(id) {
 
 
 }
-//PASSO 2 : FUNCAO DE REMOVER STATUS:
-
-
-// seguindo a mesma ideia da funcao de atualizarTarefa, deve criar uma funcao de apagar tarefa tendo como parametro o id.
-//  efetuar o usando o metodo, e no headder o token de autenticacao.
-
 
 btnLogOff.addEventListener("click", () => {
 
