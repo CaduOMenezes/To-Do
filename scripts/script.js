@@ -34,7 +34,7 @@ botaoCriarConta.addEventListener('click', (evento) => {
       .then((response) => {
 
         if (response.status == 201) {
-          
+
           return response.json()
         }
       }).then(function (resposta) {
