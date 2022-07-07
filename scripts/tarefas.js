@@ -192,13 +192,15 @@ function criarTarefa() {
         <div class="iconsTask">
           <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
           <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
-          </div>
+        </div>
         </div>
         </li>`
 
       })
 
-    )
+      
+      )
+      listarTarefas();
 }
 
 function atualizarTarefa(id, completed) {
