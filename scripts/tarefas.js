@@ -91,8 +91,8 @@ function renderizarTarefas(tasks) {
           <p class="nome">${task.description}</p>
           <p class="timestamp"> "Criada em:" ${dataFormatada}</p>
           <div class="iconsTask">
-          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
-          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          <img src="../assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="../assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
           </div>
           </div>
           </li>`
@@ -104,8 +104,8 @@ function renderizarTarefas(tasks) {
           <p class="nome">${task.description}</p>
           <p class="timestamp"> Criada em: ${dataFormatada}</p>
           <div class="iconsTask">
-          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
-          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          <img src="../assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="../assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
           </div>
           </div>
           </li>`
@@ -190,8 +190,8 @@ function criarTarefa() {
         <p class="nome">${data.description}</p>
         <p class="timestamp"> Criada em: ${dataFormat}</p>
         <div class="iconsTask">
-          <img src="./assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
-          <img src="./assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          <img src="../assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
+          <img src="../assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
         </div>
         </div>
         </li>`
@@ -261,7 +261,7 @@ function removerTarefa(id) {
 btnLogOff.addEventListener("click", () => {
 
   localStorage.clear()
-  window.location.href = "./login.html";
+  window.location.href = "../login.html";
 
 });
 
