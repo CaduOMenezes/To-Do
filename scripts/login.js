@@ -32,13 +32,13 @@ function entrar() {
 
       fetch(apiUrl,configuracaoRequisicao).then(response => {
         if (response.status === 201){
+            alert("Login successful")
             return response.json()
         }
     
       })
       .then(function(resposta){
         console.log(resposta)
-        alert("Login successful")
         loginSucesso(resposta.jwt)
       })
       .catch(err=> {
