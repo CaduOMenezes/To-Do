@@ -14,6 +14,7 @@ botaoCriarConta.addEventListener('click', (evento) => {
   if (nome.value != "" && sobrenome.value != "" &&
     email.value != "" && senha.value != "" &&
     repetirSenha.value != "") {
+      const apiURL = "https://ctd-todo-api.herokuapp.com/v1/users"
 
       const data = {
         firstName: nome.value,
@@ -29,7 +30,6 @@ botaoCriarConta.addEventListener('click', (evento) => {
       },
       body: JSON.stringify(data)
     };
-    const apiURL = "https://ctd-todo-api.herokuapp.com/v1/users"
     fetch(apiURL, configuracaoRequisicao)
       .then((response) => {
 
