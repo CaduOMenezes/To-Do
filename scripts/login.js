@@ -2,7 +2,7 @@ const inputEmail = document.getElementById("inputEmail");
 const inputPassword = document.getElementById("inputPassword");
 const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-const apiUrl = "https://ctd-todo-api.herokuapp.com/v1/users/login";
+const apiUrl = "https://ctd-fe2-todo-v2.herokuapp.com/v1/users/login";
 
 
 function entrar() {
@@ -30,16 +30,17 @@ function entrar() {
       };
     
 
-      fetch(apiUrl,configuracaoRequisicao).then(response => {
+      fetch(apiUrl,configuracaoRequisicao)
+      .then(response => {
         if (response.status === 201){
-            alert("Login successful")
-            return response.json()
+          return response.json()
         }
-    
+        
       })
       .then(function(resposta){
-        console.log(resposta)
+        
         loginSucesso(resposta.jwt)
+        alert("Login successful")
       })
       .catch(err=> {
         console.log(err)

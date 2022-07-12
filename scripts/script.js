@@ -14,7 +14,7 @@ botaoCriarConta.addEventListener('click', (evento) => {
   if (nome.value != "" && sobrenome.value != "" &&
     email.value != "" && senha.value != "" &&
     repetirSenha.value != "") {
-      const apiURL = "https://ctd-todo-api.herokuapp.com/v1/users"
+      const apiURL = "https://ctd-fe2-todo-v2.herokuapp.com/v1/users"
 
       const data = {
         firstName: nome.value,
@@ -34,12 +34,20 @@ botaoCriarConta.addEventListener('click', (evento) => {
       .then((response) => {
 
         if (response.status == 201) {
-
+          console.log(response)
           return response.json()
+          
         }
       }).then(function (resposta) {
-        cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwt)
-        console.log(resposta)
+        
+        localStorage.setItem(
+          "user", 
+          JSON.stringify(data)
+          );
+          console.log(data)
+          alert("Usuário cadastrado com sucesso")
+        
+       // cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwtRecebido)
       })
       .catch(error => {
         cadastroErro(error)
@@ -49,15 +57,13 @@ botaoCriarConta.addEventListener('click', (evento) => {
   }
 });
 
-function cadastroSucesso(nome, sobrenome, email, jwtRecebido) {
+// function cadastroSucesso(nome, sobrenome, email, jwtRecebido) {
 
-  localStorage.setItem("user", JSON.stringify({ nome: nome, sobrenome: sobrenome, email: email, token: jwtRecebido }));
-  alert("Usuário cadastrado com sucesso")
 
  
-}
+// }
 
 function cadastroErro(statusRecebido) {
-  console.log("Erro ao cadastrar");
+  alert("Erro ao cadastrar");
   console.log(statusRecebido);
 }

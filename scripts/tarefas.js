@@ -27,7 +27,7 @@ window.onload = function () {
 //--------------Função que recebe o usuário no canto superior direito da tela------------------------------------
 function receberUsuario() {
 
-  const apiURL = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe';//API que recebe os dados do usuário
+  const apiURL = 'https://ctd-fe2-todo-v2.herokuapp.com/v1/users/getMe';//API que recebe os dados do usuário
 
 
   const configuracaoRequisicao = {
@@ -122,7 +122,7 @@ function renderizarTarefas(tasks) {
 //-------------------------------------------------------------------------------------------------------------
 function listarTarefas() {
 
-  const urlListar = "https://ctd-todo-api.herokuapp.com/v1/tasks"//API que puxa através do JWT as tarefas criadas pelo user
+  const urlListar = "https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks"//API que puxa através do JWT as tarefas criadas pelo user
 
   const configuracaoListar = {
     method: "GET",
@@ -149,7 +149,7 @@ function listarTarefas() {
 
 function criarTarefa() {
 
-  const urlCriar = 'https://ctd-todo-api.herokuapp.com/v1/tasks'
+  const urlCriar = 'https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks'
 
 
   const configuracaoCriar = {
@@ -190,8 +190,8 @@ function criarTarefa() {
         <p class="nome">${data.description}</p>
         <p class="timestamp"> Criada em: ${dataFormat}</p>
         <div class="iconsTask">
-          <img src="../assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${task.id})"/>
-          <img src="../assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${task.id})"/>
+          <img src="../assets/lixeira.png" alt="lixeira" class="lixeira" onclick="removerTarefa(${data.id})"/>
+          <img src="../assets/writing.png" alt="editar" class="edit" onclick="editarTarefa(${data.id})"/>
         </div>
         </div>
         </li>`
@@ -205,7 +205,7 @@ function criarTarefa() {
 
 function atualizarTarefa(id, completed) {
 
-  const urlAtualizar = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`
+  const urlAtualizar = `https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${id}`
   const configAtualizar = {
     method: "PUT",
     body: "",
@@ -233,7 +233,7 @@ function atualizarTarefa(id, completed) {
 
 
 function removerTarefa(id) {
-  const urlDelete = `https://ctd-todo-api.herokuapp.com/v1/tasks/${id}`
+  const urlDelete = `https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${id}`
   const configuracaoRequisicao = {
     method: "DELETE",
     headers: {
@@ -261,7 +261,7 @@ function removerTarefa(id) {
 btnLogOff.addEventListener("click", () => {
 
   localStorage.clear()
-  window.location.href = "../login.html";
+  window.location.href = "../index.html";
 
 });
 
