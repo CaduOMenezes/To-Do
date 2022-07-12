@@ -20,15 +20,12 @@ window.onload = function () {
 
   })
 
-
-
 };
 
 //--------------Função que recebe o usuário no canto superior direito da tela------------------------------------
 function receberUsuario() {
 
   const apiURL = 'https://ctd-fe2-todo-v2.herokuapp.com/v1/users/getMe';//API que recebe os dados do usuário
-
 
   const configuracaoRequisicao = {
 
@@ -45,15 +42,12 @@ function receberUsuario() {
 
     .then((response) => response.json())
 
-
     .then(function (data) {
 
       const nomeUsuario = document.getElementById('nomeUsuario');
       const dados = `${data.firstName} ${data.lastName}`
 
       nomeUsuario.innerHTML = dados;
-
-
 
     })
 
