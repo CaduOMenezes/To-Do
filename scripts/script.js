@@ -94,10 +94,10 @@ botaoCriarConta.addEventListener('click', (evento) => {
           "user", 
           JSON.stringify(data)
           );
-          console.log(data);
+          console.log(resposta);
           // ocultarSpinner();
-          location.href = "./tarefas.html";
-          // alert("Usuário cadastrado com sucesso")
+          location.href = "../index.html";
+          alert("Usuário cadastrado com sucesso")
         
        // cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwtRecebido)
       })
